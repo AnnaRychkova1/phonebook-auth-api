@@ -6,7 +6,7 @@ import HttpError from '../helpers/HttpError.js';
 
 export const signup = async (req, res, next) => {
   try {
-    const { username, password, email } = req.body;
+    const { name, password, email } = req.body;
 
     const isUser = await usersService.findUserByElement({ email });
 
@@ -16,15 +16,11 @@ export const signup = async (req, res, next) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const newUser = await usersService.createUser(
-      username,
-      email,
-      passwordHash
-    );
+    const newUser = await usersService.createUser(name, email, passwordHash);
 
     res.status(201).json({
       user: {
-        username: newUser.username,
+        name: newUser.name,
         email: newUser.email,
       },
     });
@@ -58,7 +54,7 @@ export const login = async (req, res, next) => {
       token,
       user: {
         email: user.email,
-        username: user.username,
+        name: user.name,
       },
     });
   } catch (err) {

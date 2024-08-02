@@ -4,8 +4,8 @@ async function findUserByElement(element) {
   return User.findOne(element);
 }
 
-async function createUser(username, email, password) {
-  return User.create({ username, email, password });
+async function createUser(name, email, password) {
+  return User.create({ name, email, password });
 }
 
 async function updateUser(_id, body) {

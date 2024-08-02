@@ -3,7 +3,7 @@ import Joi from 'joi';
 
 const userSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
     },
     password: {
@@ -28,7 +28,7 @@ const userSchema = new Schema(
 );
 
 const userCreateSchema = Joi.object({
-  username: Joi.string().min(3).max(50).required().messages({
+  name: Joi.string().min(3).max(50).required().messages({
     'string.min': 'Username must be at least 3 characters long',
     'string.max': 'Username must be at most 50 characters long',
     'any.required': 'Username is a required field',
