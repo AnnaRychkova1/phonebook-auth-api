@@ -6,10 +6,12 @@ const userSchema = new Schema(
     name: {
       type: String,
     },
+
     password: {
       type: String,
       required: [true, 'Password is required'],
     },
+
     email: {
       type: String,
       required: [true, 'Email is required'],
@@ -34,11 +36,11 @@ const userCreateSchema = Joi.object({
     'any.required': 'Username is a required field',
   }),
   password: Joi.string()
-    .pattern(new RegExp('^[a-zA-Z0-9]{5,30}$'))
+    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
     .required()
     .messages({
       'string.pattern.base':
-        'Password must contain only letters and numbers and be between 5 and 30 characters long',
+        'Password must contain only letters and numbers and be between 6 and 30 characters long',
       'any.required': 'Password is a required field',
     }),
   email: Joi.string().email().required().messages({
@@ -49,11 +51,11 @@ const userCreateSchema = Joi.object({
 
 const userLoginSchema = Joi.object({
   password: Joi.string()
-    .pattern(new RegExp('^[a-zA-Z0-9]{5,30}$'))
+    .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
     .required()
     .messages({
       'string.pattern.base':
-        'Password must contain only letters and numbers and be between 5 and 30 characters long',
+        'Password must contain only letters and numbers and be between 6 and 30 characters long',
       'any.required': 'Password is a required field',
     }),
   email: Joi.string().email().required().messages({

@@ -13,8 +13,8 @@ async function removeContact(contactId, owner) {
   return Contact.findOneAndDelete({ _id: contactId, owner });
 }
 
-async function addContact(name, email, phone, owner) {
-  return Contact.create({ name, email, phone, owner });
+async function addContact(name, number, owner) {
+  return Contact.create({ name, number, owner });
 }
 
 async function updateContact(contactId, owner, body) {

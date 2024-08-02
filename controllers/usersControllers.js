@@ -18,7 +18,14 @@ export const signup = async (req, res, next) => {
 
     const newUser = await usersService.createUser(name, email, passwordHash);
 
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    await usersService.updateUser(newUser._id, { token });
+
     res.status(201).json({
+      token,
       user: {
         name: newUser.name,
         email: newUser.email,

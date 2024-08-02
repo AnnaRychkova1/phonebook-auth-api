@@ -7,11 +7,8 @@ const contactSchema = new Schema(
       type: String,
       required: [true, 'Set name for contact'],
     },
-    email: {
-      type: String,
-    },
 
-    phone: {
+    number: {
       type: String,
     },
 
@@ -31,7 +28,7 @@ const createContactSchema = Joi.object({
     'string.min': 'Name must be at least 3 characters long',
     'any.required': 'Name is a required field',
   }),
-  phone: Joi.string().pattern(phonePattern).required().messages({
+  number: Joi.string().pattern(phonePattern).required().messages({
     'string.pattern.base':
       'Phone number must be at least 6 characters long and can contain digits, spaces, hyphens, and parentheses',
     'any.required': 'Phone is a required field',
@@ -42,7 +39,7 @@ const updateContactSchema = Joi.object({
   name: Joi.string().min(3).messages({
     'string.min': 'Name must be at least 3 characters long',
   }),
-  phone: Joi.string().pattern(phonePattern).messages({
+  number: Joi.string().pattern(phonePattern).messages({
     'string.pattern.base':
       'Phone number must be at least 6 characters long and can contain digits, spaces, hyphens, and parentheses',
   }),

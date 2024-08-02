@@ -34,10 +34,10 @@ export const deleteContact = async (req, res, next) => {
 };
 
 export const createContact = async (req, res, next) => {
-  const { name, email, phone } = req.body;
+  const { name, number } = req.body;
   const owner = req.user.id;
   try {
-    const contact = await contactsService.addContact(name, email, phone, owner);
+    const contact = await contactsService.addContact(name, number, owner);
     res.status(201).json(contact);
   } catch (err) {
     next(HttpError(500, 'Server error'));
